@@ -29,14 +29,26 @@ def perform_task(k, epsilon, N_STEPS, N_RUNS, mode, alpha=0.1):
     return Optimal_percentage, Reward
 
 
-percent_optimal_sample, reward_sample = perform_task(10, 0.1, 1000, 200, 'sample')
+percent_optimal_sample, reward_sample = perform_task(10, 0.1, 10000, 2000, 'sample')
 avg_optimal_sample = np.mean(percent_optimal_sample, axis=0)
 avg_reward_sample = np.mean(reward_sample, axis=0)
 
-# percent_optimal_weighted, reward_weighted = perform_task(10, 0.1, 10000, 2000, 'weighted')
-# avg_optimal_weighted = np.mean(percent_optimal_weighted, axis=0)
-# avg_reward_weighted = np.mean(reward_weighted, axis=0)
+percent_optimal_weighted, reward_weighted = perform_task(10, 0.1, 10000, 2000, 'weighted', 0.1)
+avg_optimal_weighted = np.mean(percent_optimal_weighted, axis=0)
+avg_reward_weighted = np.mean(reward_weighted, axis=0)
 
-plt.plot(avg_optimal_sample)
-plt.plot(avg_reward_sample)
+plt.figure(1)
+plt.plot(avg_optimal_sample, label='ε = 0.1')
+plt.plot(avg_optimal_weighted, label='ε = 0.1 α = 0.1')
+plt.legend()
+plt.xlabel("Steps")
+plt.ylabel("% Optimal Action")
+
+plt.figure(2)
+plt.plot(avg_reward_sample, label='ε = 0.1')
+plt.plot(avg_reward_weighted, label='ε = 0.1 α = 0.1')
+plt.legend()
+plt.xlabel("Steps")
+plt.ylabel("Average reward")
+
 plt.show()

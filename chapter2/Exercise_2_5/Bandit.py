@@ -6,8 +6,7 @@ import numpy as np
 class Bandit():
     def __init__(self, num_of_actions):
         self.k = num_of_actions
-        self.act_val_distrib = [np.random.normal(0, 1, 10) for i in range(self.k)]
-        self.action_values = [np.mean(self.act_val_distrib[i]) for i in range(self.k)]
+        self.action_values = [np.random.normal(0, 1, 1) for i in range(self.k)]
         self.Q = np.full(self.k, 0, dtype=float)
         self.N = np.full(self.k, 0)
 
@@ -24,9 +23,8 @@ class Bandit():
         return float(action == np.argmax(self.action_values))
 
     def random_walk(self):
-        increment = [np.random.normal(0, 0.01, 100) for i in range(self.k)]
-        self.act_val_distrib += increment
-        self.action_values = [np.mean(self.act_val_distrib[i]) for i in range(self.k)]
+        increment = [np.random.normal(0, 0.01, 1) for i in range(self.k)]
+        self.action_values = [self.action_values[i] + increment[i] for i in range(self.k)]
 
 
 class SampleAverageBandit(Bandit):
@@ -50,6 +48,7 @@ class SampleAverageBandit(Bandit):
         self.Q[a] = self.Q[a] + (1 / self.N[a]) * (reward - self.Q[a])
         return a, reward
 
+
 class WeightedAverageBandit(Bandit):
 
     def __init__(self, num_of_actions, step_size):
@@ -61,7 +60,7 @@ class WeightedAverageBandit(Bandit):
         # print('explore selected action ' + str(a + 1))
         reward = self.get_reward(a)
         self.N[a] += 1
-        self.Q[a] = self.Q[a] + (1 / self.step_size) * (reward - self.Q[a])
+        self.Q[a] = self.Q[a] + self.step_size * (reward - self.Q[a])
         return a, reward
 
     def exploit(self):
@@ -69,11 +68,12 @@ class WeightedAverageBandit(Bandit):
         # print('exploit action ' + str(a))
         reward = self.get_reward(a)
         self.N[a] += 1
-        self.Q[a] = self.Q[a] + (1 / self.step_size) * (reward - self.Q[a])
+        self.Q[a] = self.Q[a] + self.step_size * (reward - self.Q[a])
         return a, reward
 
-def get_instance(bandit_mode, k, alpha = 0.1):
+
+def get_instance(bandit_mode, k, alpha=0.1):
     if bandit_mode == 'sample':
         return SampleAverageBandit(k)
     elif bandit_mode == 'weighted':
-        return WeightedAverageBandit(k, step_size= alpha)
+        return WeightedAverageBandit(k, step_size=alpha)
