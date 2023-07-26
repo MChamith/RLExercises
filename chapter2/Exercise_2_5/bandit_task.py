@@ -29,9 +29,9 @@ def perform_task(k, epsilon, N_STEPS, N_RUNS, mode, alpha=0.1):
     return Optimal_percentage, Reward
 
 
-percent_optimal_sample, reward_sample = perform_task(10, 0.1, 10000, 2000, 'sample')
-avg_optimal_sample = np.mean(percent_optimal_sample, axis=0)
-avg_reward_sample = np.mean(reward_sample, axis=0)
+# percent_optimal_sample, reward_sample = perform_task(10, 0.1, 10000, 2000, 'sample')
+# avg_optimal_sample = np.mean(percent_optimal_sample, axis=0)
+# avg_reward_sample = np.mean(reward_sample, axis=0)
 
 percent_optimal_weighted, reward_weighted = perform_task(10, 0.1, 10000, 2000, 'weighted', 0.1)
 avg_optimal_weighted = np.mean(percent_optimal_weighted, axis=0)
