@@ -3,7 +3,7 @@ import random
 import numpy as np
 
 
-class Bandit():
+class Bandit:
     def __init__(self, num_of_actions):
         self.k = num_of_actions
         self.action_values = [np.random.normal(0, 1, 1) for i in range(self.k)]
