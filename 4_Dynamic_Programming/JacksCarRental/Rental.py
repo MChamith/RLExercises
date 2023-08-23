@@ -123,7 +123,7 @@ class CarRental:
 
     def save_value(self, count):
         plt.figure()
-        plt.title("Policy" + str(count))
+        plt.title("Value function" + str(count))
         plt.ylabel("Cars at Location 1")
         plt.xlabel("Cars at Location 2")
 

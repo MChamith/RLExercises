@@ -30,6 +30,7 @@ Policies for Jack's car rental (Variation Problem - Exercise 4.7)
 ![Figure 4.2.4](plots/v_policy3.jpg) 
 
 Value for optimal policy
+
 ![Value](plots/v_value3.jpg)
 
 
