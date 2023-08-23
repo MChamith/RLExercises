@@ -125,7 +125,7 @@ class CarRental:
         plt.imshow(self.policies, origin='lower',
                    vmin=-5, vmax=+5)
         plt.colorbar()
-        plt.savefig('v_policy' + str(count) + '.jpg')
+        plt.savefig('plots/v_policy' + str(count) + '.jpg')
         plt.close()
 
     def save_value(self, count):
@@ -136,7 +136,7 @@ class CarRental:
 
         plt.imshow(self.V, origin='lower')
         plt.colorbar()
-        plt.savefig('v_value' + str(count) + '.jpg')
+        plt.savefig('plots/v_value' + str(count) + '.jpg')
         plt.close()
 
     def train(self):
