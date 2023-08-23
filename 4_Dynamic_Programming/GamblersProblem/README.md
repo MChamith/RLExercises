@@ -14,6 +14,7 @@ Figure 4.3 - Solution to ph=0.4 (Recreation of figure 4.3)
 ![Figure 4.3.2](plots/policy0.4.jpg) 
 
 Final value function ph =0.4
+
 ![Figure 4.3.3](plots/value_final0.4.jpg) 
 
 Solution to ph= 0.25 
@@ -22,6 +23,7 @@ Solution to ph= 0.25
 ![Figure 4.3.2](plots/policy0.25.jpg) 
 
 Final value function ph =0.25
+
 ![Figure 4.3.3](plots/value_final0.25.jpg) 
 
 
@@ -31,6 +33,7 @@ Solution to ph= 0.55
 ![Figure 4.3.2](plots/policy0.55.jpg) 
 
 Final value function ph =0.55
+
 ![Figure 4.3.3](plots/value_final0.55.jpg) 
 
 
