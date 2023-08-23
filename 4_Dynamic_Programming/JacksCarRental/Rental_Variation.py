@@ -43,6 +43,10 @@ class CarRental:
         num_cars_B_Initial = max(min(s[1] + a, self.max_cars), 0)
         cars_cost = a-1 if a > 0 else a
         total_reward -= self.tranport_cost * np.abs(cars_cost)
+        if num_cars_A_Initial > 10:
+            total_reward -= 4
+        if num_cars_B_Initial > 10:
+            total_reward -= 4
         for rent_request_A in range(self.max_poisson):
             for rent_request_B in range(self.max_poisson):
 
@@ -66,8 +70,6 @@ class CarRental:
                         num_cars_at_A = min(return_A + num_cars_A, self.max_cars)
                         num_cars_at_B = min(return_B + num_cars_B, self.max_cars)
 
-                        cars_at_second_park = max(num_cars_at_A - 10, 0) + max(num_cars_B-10, 0)
-                        reward -= cars_at_second_park*self.parking_cost
 
                         total_prob = (rent_prob * return_prob)
 
